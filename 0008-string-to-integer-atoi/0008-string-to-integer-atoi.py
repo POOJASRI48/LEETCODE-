@@ -1,0 +1,17 @@
+class Solution:
+    def myAtoi(self, s):
+        s = s.lstrip()
+        if not s:
+            return 0
+
+        sign = -1 if s[0] == '-' else 1
+        if s[0] in '+-':
+            s = s[1:]
+
+        num = 0
+        for c in s:
+            if not c.isdigit():
+                break
+            num = num * 10 + (ord(c) - 48)
+
+        return max(-2**31, min(sign * num, 2**31 - 1))
